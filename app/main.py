@@ -8,8 +8,10 @@ from app.routers.health_data import router as health_data_router
 from app.routers.alert import router as alert_router
 from app.routers.iot import router as iot_router
 from app.routers.device_stats import router as stats_router
+from app.core.scheduler import start_scheduler
 
-import app.core.firebase  # init Firebase
+import app.core.firebase  # init Firebasex
+import app.models
 
 app = FastAPI(
     title="Health Monitor API",
@@ -36,3 +38,7 @@ app.include_router(stats_router)
 @app.get("/")
 def root():
     return {"status": "API Server is running"}
+
+@app.on_event("startup")
+def startup():
+    start_scheduler()
