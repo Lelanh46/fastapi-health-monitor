@@ -3,7 +3,6 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 firebase-admin
-pydantic
-apscheduler
+pydantic[email]
 python-multipart
-email-validator
+apscheduler
