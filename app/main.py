@@ -27,7 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-Base.metadata.create_all(bind=engine)
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
+    start_scheduler()
 
 app.include_router(device_router)
 app.include_router(health_data_router)
@@ -39,6 +42,3 @@ app.include_router(stats_router)
 def root():
     return {"status": "API Server is running"}
 
-@app.on_event("startup")
-def startup():
-    start_scheduler()

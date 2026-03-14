@@ -4,5 +4,6 @@ sqlalchemy
 psycopg2-binary
 firebase-admin
 pydantic[email]
+email-validator
 python-multipart
 apscheduler
