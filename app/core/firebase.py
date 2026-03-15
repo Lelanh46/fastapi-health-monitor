@@ -1,19 +1,23 @@
 import firebase_admin
 from firebase_admin import credentials, db
-from pathlib import Path
+import os
 
-BASE_DIR = Path(__file__).resolve().parents[2]
-cred_path = BASE_DIR / "firebase_key.json"
+private_key = os.getenv("FIREBASE_PRIVATE_KEY")
 
-if not cred_path.exists():
-    raise FileNotFoundError(f"Firebase key not found at {cred_path}")
+cred_dict = {
+    "type": "service_account",
+    "project_id": os.getenv("FIREBASE_PROJECT_ID"),
+    "private_key": private_key.replace("\\n", "\n") if private_key else None,
+    "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
+    "token_uri": "https://oauth2.googleapis.com/token",
+}
 
 if not firebase_admin._apps:
-    cred = credentials.Certificate(str(cred_path))
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(
         cred,
         {
-            "databaseURL": "https://healthwatch-iot-default-rtdb.asia-southeast1.firebasedatabase.app/"
+            "databaseURL": os.getenv("FIREBASE_DB_URL")
         }
     )
 
