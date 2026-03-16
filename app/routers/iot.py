@@ -10,7 +10,6 @@ from app.services.seq_monitor import check_seq
 from datetime import datetime
 from app.services.seq_stats_service import update_seq_stats
 from app.core.firebase import get_db_ref
-from datetime import datetime
 
 router = APIRouter(prefix="/iot", tags=["IoT"])
 
