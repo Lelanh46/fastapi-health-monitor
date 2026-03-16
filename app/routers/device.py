@@ -26,17 +26,31 @@ def register_device(
     user=Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+
     device = (
         db.query(Device)
         .filter(Device.device_code == payload.device_code)
         .first()
     )
 
+    # 🔥 nếu device chưa tồn tại → tạo mới
     if not device:
-        raise HTTPException(status_code=404, detail="Device not found")
+        device = Device(
+            device_code=payload.device_code,
+            device_uid=None,
+            device_name=None,
+            owner_uid=None
+        )
+        db.add(device)
+        db.commit()
+        db.refresh(device)
 
+    # ❗ nếu device đã có owner → không cho đăng ký
     if device.owner_uid is not None:
-        raise HTTPException(status_code=400, detail="Device already registered")
+        raise HTTPException(
+            status_code=400,
+            detail="Device already registered"
+        )
 
     # 1️⃣ PostgreSQL
     device.device_uid = payload.device_uid
@@ -46,7 +60,7 @@ def register_device(
     db.commit()
     db.refresh(device)
 
-    # 2️⃣ Firebase Realtime  ✅ CHỈ Ở ĐÂY
+    # 2️⃣ Firebase Realtime
     user_ref = get_db_ref(f"users/{user['uid']}/devices/{payload.device_uid}")
     user_ref.set({
         "nickname": payload.device_name,
@@ -65,7 +79,6 @@ def register_device(
         "device_code": device.device_code,
         "device_uid": device.device_uid
     }
-
 
 
 

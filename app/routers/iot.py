@@ -45,7 +45,11 @@ def esp_push_data(payload: EspHealthPayload, db: Session = Depends(get_db)):
         seq=payload.seq,
         heart_rate=clean["heart_rate"],
         spo2=clean["spo2"],
-        temperature=clean["temperature"],
+        temperature=(
+            clean["temperature"]
+            if clean["temperature"] is not None
+            else payload.temperature
+        ),
         gas_level=payload.gas_level,
         humidity=payload.humidity,
         blood_pressure=payload.blood_pressure,
@@ -78,16 +82,13 @@ def esp_push_data(payload: EspHealthPayload, db: Session = Depends(get_db)):
     db.commit()
 
     # 🔴 Push realtime
-    push_latest_health(
+    if device.device_uid:
+        push_latest_health(
         device_uid=device.device_uid,
         data={
             "heartRate": clean["heart_rate"],
             "spo2": clean["spo2"],
-            "temperature": (
-                clean["temperature"]
-                if clean["temperature"] is not None
-                else payload.temperature
-            ),
+            "temperature": clean["temperature"] if clean["temperature"] is not None else payload.temperature,
             "gas": payload.gas_level,
             "humidity": payload.humidity,
             "bloodPressure": payload.blood_pressure
@@ -95,3 +96,31 @@ def esp_push_data(payload: EspHealthPayload, db: Session = Depends(get_db)):
     )
 
     return {"status": "ok"}
+
+@router.post("/register")
+def esp_register_device(payload: dict, db: Session = Depends(get_db)):
+
+    device_code = payload.get("device_code")
+
+    if not device_code:
+        raise HTTPException(400, "device_code required")
+
+    device = db.query(Device).filter(
+        Device.device_code == device_code
+    ).first()
+
+    # nếu đã tồn tại
+    if device:
+        return {"status": "exists"}
+
+    # tạo device mới
+    new_device = Device(
+        device_code=device_code,
+        device_uid=None,
+        owner_uid=None
+    )
+
+    db.add(new_device)
+    db.commit()
+
+    return {"status": "registered"}

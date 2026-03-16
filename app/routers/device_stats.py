@@ -6,7 +6,7 @@ from app.models.device_stats import DeviceStats
 router = APIRouter(prefix="/device-stats", tags=["Device Stats"])
 
 @router.get("/{device_id}")
-def get_device_stats(device_id: str, db: Session = Depends(get_db)):
+def get_device_stats(device_id: int, db: Session = Depends(get_db)):
 
     stats = db.query(DeviceStats).filter(
         DeviceStats.device_id == device_id
