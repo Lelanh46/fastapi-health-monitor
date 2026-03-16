@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "healthwatch-iot",
+  "private_key_id": "2d036ceff073f30b65b2185f4723274c08268258",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDb4IRaU64qI4/Y\nC+LWsHkA50VpFMPSso1JALYxX9Ydhi/eaVguLgqZ6wJfBgfC48/KqJ1NgQQADCuf\nq9rxU2kymIWMIqGPLNlKdtxCBMNvRi926xnRmkfvJYIOUbmbRPShyRsZLqInCBN/\nik269wdvXKbhruBLlKARtC0yPYDUK7xFQwxSC2b4Bv++ZMzYCUVn6ES5Zsw0a4V1\nEDo0Fou9esCQDRmQ5qn9oHHn0oNGbKB3M9BkVoEmKcKGG0Kw7ie4PkX7hJ/nBG1r\nuNR1E3+GarpXAHmGSpOlhUnv2cFYe8i+OznrlgLoYaGq3A2Sz8TSCvI6YcV+Nupb\n7816TsvLAgMBAAECggEACndH5YLJLgFOVgLO09hHkjbv814FKjDMj9aEVZpRt0sN\nWUFbbKtNXuE0VjCTyv+MAwH+ptNGzPfHVczY2ZbWUY24AaEeXpHMcAJzXoMaiF/n\nX3o2WudEmEoJREQ4mP7xxAeuDgdNuZzlTLNZGtaqWG8pFGH+FCrpaZ5RbmxGBxNN\nRz5oqm3EG3yJWGdh1WqzYbr94A/30MLntSAHYuOGqDstKSjjsuhIru8Say4w7/a/\npk0DPWzMUWQ7WC3U329bopqhFNmjFN2iNJhk043acu4i63eG2SfOTk3r30hspxeq\nkT34wQ9CD4vwilDyVEbVzELvE4SwaBY5woTzAEuf8QKBgQDuKzEBbepl4VdOT5Nz\n0nCTBw/yCYpf6iQEBn1TQcBJmPdyEBUeOhAu6M5usfkiXaEsdmMu8dmRzhIBJMnF\nvyLQ0sQvGpvAD6xAnThMEwLnAjJA7Gh9nt3q15AcrGDTXQGLBjdYBZ9ZY4FVM0zK\nGiJpai2Niqk3ry+xySGcEnZAUQKBgQDsVr3klJKzmVyy37hB7+27aTnZECKuIMcT\nypb2oLCmCPPy7e5PTswCl8Y1FbY+zIIeh22oWILyXWxDLCBJQ1jvlJSpvAt4W5LY\nYnTDT0HgDavpA/n77hmdBOwYHX5E4x6FXltIBmDC+ZzgKXn0tlXJxkLMF223o5Bx\n/5sQrtI/WwKBgHBHjGLQHqDJCw+wFCOWIdwuiCXiuYleKHx9UrfdV3la08zCKDKH\nzPlQZ4FoBbtdyI3dggSvn5JNQ8+mODkxUoh/1F0gfiydNud/NvsmO0gMkQRqbxhJ\nvPTpitb5rOv3/LI9y/mDLQxHDMHN3XWpvG9VzwPbSsslm6aE24NocLcBAoGATnL0\nkX1nvMn5ZT6xsOFtbjodg5nBiT9EFaO3vKHWQSbTox2rbxPe0DWFC3XriqjjwDKA\nCdNnk//CwgFRrj/2s4AEYNsUi50J/12fGH2khjTDjZNOVXvRcLeDjvWrRj6FkQuj\nDSNg1xd4JUhfPQWRMGrpHUnhl4Vpmw2XcVA2ZeUCgYEAmd/xZh/QR6R3NzcT0Ukr\nrSetKhP+y0s/bukFNESKdTj4noKFX68yAEEQAGb1AdZU5XbVTAKVCUOwibpL2V7H\nrzZCQNhwHNtmyYb9zB+gCW2v7bwI80tONlXsFgdQHW5mXKIkSlYGNOc+fLjhATa+\nAqsVWX7h2LdS47OGQe3uomU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@healthwatch-iot.iam.gserviceaccount.com",
+  "client_id": "108490089619000696079",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40healthwatch-iot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
