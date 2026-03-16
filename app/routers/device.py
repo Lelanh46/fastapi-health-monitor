@@ -69,8 +69,10 @@ def register_device(
     })
 
     device_ref = get_db_ref(f"devices/{payload.device_uid}")
-    device_ref.update({
+    device_ref.set({
+        "device_code": device.device_code,
         "owner": user["uid"],
+        "status": "online",
         "createdAt": datetime.utcnow().isoformat()
     })
 
