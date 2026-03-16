@@ -112,10 +112,10 @@ def esp_register_device(payload: dict, db: Session = Depends(get_db)):
 
     # nếu đã tồn tại
     if device:
-    device_ref = get_db_ref(f"devices/{device_code}")
-    device_ref.update({
-        "status": "online",
-        "lastSeen": datetime.utcnow().isoformat()
+        device_ref = get_db_ref(f"devices/{device_code}")
+        device_ref.update({
+            "status": "online",
+            "lastSeen": datetime.utcnow().isoformat()
     })
 
     return {"status": "exists"}
