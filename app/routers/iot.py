@@ -112,7 +112,13 @@ def esp_register_device(payload: dict, db: Session = Depends(get_db)):
 
     # nếu đã tồn tại
     if device:
-        return {"status": "exists"}
+    device_ref = get_db_ref(f"devices/{device_code}")
+    device_ref.update({
+        "status": "online",
+        "lastSeen": datetime.utcnow().isoformat()
+    })
+
+    return {"status": "exists"}
 
     # tạo device mới trong Supabase
     new_device = Device(
