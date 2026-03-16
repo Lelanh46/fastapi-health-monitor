@@ -9,6 +9,8 @@ from app.services.health_pipeline import clean_health_data
 from app.services.seq_monitor import check_seq
 from datetime import datetime
 from app.services.seq_stats_service import update_seq_stats
+from app.core.firebase import get_db_ref
+from datetime import datetime
 
 router = APIRouter(prefix="/iot", tags=["IoT"])
 
@@ -113,14 +115,22 @@ def esp_register_device(payload: dict, db: Session = Depends(get_db)):
     if device:
         return {"status": "exists"}
 
-    # tạo device mới
+    # tạo device mới trong Supabase
     new_device = Device(
         device_code=device_code,
-        device_uid=None,
+        device_uid=device_code,   # 🔥 dùng luôn device_code
         owner_uid=None
     )
 
     db.add(new_device)
     db.commit()
+
+    # 🔴 TẠO NODE FIREBASE REALTIME
+    device_ref = get_db_ref(f"devices/{device_code}")
+    device_ref.set({
+        "device_code": device_code,
+        "status": "online",
+        "createdAt": datetime.utcnow().isoformat()
+    })
 
     return {"status": "registered"}
